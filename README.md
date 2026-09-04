@@ -59,7 +59,7 @@
 
 ```bash
 git clone https://github.com/takuto-seto/scheduler_sender_app.git
-cd schedule-weather-mailer
+cd scheduler-sender-app
 ```
 
 - 仮想環境を作成し、有効化します。
