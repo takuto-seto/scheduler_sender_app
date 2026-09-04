@@ -58,7 +58,7 @@
 - リポジトリをクローンし、対象のディレクトリへ移動します。
 
 ```bash
-git clone https://github.com/takuto-seto/Apscheduler_app.git
+git clone https://github.com/takuto-seto/scheduler_sender_app.git
 cd schedule-weather-mailer
 ```
 
