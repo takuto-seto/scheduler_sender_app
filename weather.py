@@ -3,9 +3,7 @@ import sys
 import logging
 
 
-
 def get_tokyo_weather():
-
 
     region_code = "130000"
     url = f"https://www.jma.go.jp/bosai/forecast/data/forecast/{region_code}.json"
@@ -19,7 +17,7 @@ def get_tokyo_weather():
         tokyo_weather = tokyo_areas['weathers'][0]
 
         tokyo_area_temp = data[0]['timeSeries'][2]['areas'][0]
-        tokyo_temp = tokyo_area_temp['temps']
+        tokyo_temp = tokyo_area_temp['temps'][0]
 
         return f"{tokyo_weather}", f"{tokyo_temp}"
 

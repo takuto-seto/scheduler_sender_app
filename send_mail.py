@@ -1,11 +1,11 @@
 import os
 import sys
 import logging
+import unittest
 import smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from weather import get_tokyo_weather
-
 
 
 def send_weather_mail():
