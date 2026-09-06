@@ -58,8 +58,8 @@
 - リポジトリをクローンし、対象のディレクトリへ移動します。
 
 ```bash
-git clone https://github.com/takuto-seto/Apscheduler_app.git
-cd schedule-weather-mailer
+git clone https://github.com/takuto-seto/scheduler_sender_app.git
+cd scheduler-sender-app
 ```
 
 - 仮想環境を作成し、有効化します。
