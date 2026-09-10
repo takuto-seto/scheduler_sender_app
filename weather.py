@@ -3,6 +3,16 @@ import sys
 import logging
 
 
+class WeatherAPIError(Exception):
+    """APIへのアクセス失敗"""
+    pass
+
+class WeatherDataError(Exception):
+    """データ構造が異常"""
+    pass
+
+
+
 def get_tokyo_weather():
 
     region_code = "130000"
@@ -15,12 +25,10 @@ def get_tokyo_weather():
 
         tokyo_areas = data[0]['timeSeries'][0]['areas'][0]
         tokyo_weather = tokyo_areas['weathers'][0]
-
         tokyo_area_temp = data[0]['timeSeries'][2]['areas'][0]
         tokyo_temp = tokyo_area_temp['temps'][0]
 
         return f"{tokyo_weather}", f"{tokyo_temp}"
 
     else:
-        logging.error("dataの取得に失敗しました")
-        sys.exit()
+        raise WeatherAPIError("APIがエラーを返しました")
