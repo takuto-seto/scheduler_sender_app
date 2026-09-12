@@ -15,7 +15,7 @@ class WeatherDataError(Exception):
 
 def get_tokyo_weather():
 
-    region_code = "130000"
+    region_code = "999999"
     url = f"https://www.jma.go.jp/bosai/forecast/data/forecast/{region_code}.json"
 
     response = requests.get(url)
