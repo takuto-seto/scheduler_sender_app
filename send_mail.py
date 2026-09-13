@@ -7,6 +7,15 @@ from email.mime.text import MIMEText
 from dotenv import load_dotenv
 from weather import get_tokyo_weather, WeatherAPIError
 
+logging.basicConfig(
+    filename='log/sendmail.log',
+    level=logging.INFO,
+    format='%(asctime)s %(levelname)s %(message)s'
+)
+
+class MailSendError(Exception):
+    """メール送信失敗"""
+    pass
 
 def send_weather_mail():
     try:
@@ -23,12 +32,19 @@ def send_weather_mail():
         msg["To"] = RECEIVER_MAIL
 
         logging.info("serverへ接続開始")
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
-            server.login(SENDER_MAIL, SENDER_PASS)
-            server.sendmail(SENDER_MAIL, RECEIVER_MAIL, msg.as_string())
-            logging.info("メール送信完了")
+        try:
 
-    except WeatherAPIError as e:
+            with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
+                server.login(SENDER_MAIL, SENDER_PASS)
+                server.sendmail(wrong@email.com, RECEIVER_MAIL, msg.as_string())
+                logging.info("メール送信完了")
+
+        except Exception as e:
+            raise MailSendError(f"メール送信に失敗しました：{e}")
+
+    except (WeatherAPIError, MailSendError) as e:
         logging.error(f"天気データ取得エラー{e}")
         sys.exit()
 
+if __name__ == "__main__":
+    send_weather_mail()

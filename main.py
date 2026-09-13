@@ -15,5 +15,5 @@ sched = BlockingScheduler()
 def job():
     send_weather_mail()
 
-sched.add_job(job, 'cron', hour=17, minute=13)
+sched.add_job(job, 'cron', hour=13, minute=53)
 sched.start()
