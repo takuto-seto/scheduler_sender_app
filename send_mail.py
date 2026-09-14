@@ -36,7 +36,7 @@ def send_weather_mail():
 
             with smtplib.SMTP_SSL('smtp.gmail.com', 465) as server:
                 server.login(SENDER_MAIL, SENDER_PASS)
-                server.sendmail(wrong@email.com, RECEIVER_MAIL, msg.as_string())
+                server.sendmail(SENDER_MAIL, RECEIVER_MAIL, msg.as_string())
                 logging.info("メール送信完了")
 
         except Exception as e:
