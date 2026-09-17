@@ -21,4 +21,13 @@ def test_send_weather_mail_success(mock_smtp, mock_get_weather, mock_weather_dat
     mock_get_weather.assert_called_once()
     mock_server.sendmail.assert_called_once()
 
-    
+
+@patch('send_mail.get_tokyo_weather')
+def test_send_weather_mail_error(mock_get_weather):
+    """WeatherAPIを発生させる """
+
+    from weather import WeatherAPIError
+    mock_get_weather.side_effect = WeatherAPIError("APIエラー")
+
+    with pytest.raises(SystemExit):
+        send_weather_mail()
